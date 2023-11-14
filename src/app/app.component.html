@@ -1,3 +1,6 @@
 <h1>Hello world</h1>
-<app-map></app-map>
+@if (apiKeyResolved) {
+
+  <app-map [apikey]="apiKeyResolved"></app-map>
+}
 <router-outlet></router-outlet>

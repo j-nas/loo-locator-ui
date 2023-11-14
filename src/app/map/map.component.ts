@@ -18,12 +18,12 @@ export class MapComponent {
   private map!: Map;
 
   constructor(private geoapifyService: GeoapifyService) { }
+
+  @Input()
   apikey?: string;
 
   ngOnInit() {
-    this.geoapifyService.getApiKey().subscribe((response) => {
-      this.apikey = response.apikey;
-    });
+   
   }
   ngAfterViewInit() {
     const initialState = {
@@ -31,9 +31,7 @@ export class MapComponent {
       lat: 49,
       zoom: 5
     }
-    const apiKey = this.geoapifyService.getApiKey().subscribe((response) => {
-      this.apikey = response.apikey;
-    });
+    
     const mapStyle = 'https://maps.geoapify.com/v1/styles/osm-carto/style.json';
 
     this.map = new Map({

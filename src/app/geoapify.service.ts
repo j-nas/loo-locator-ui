@@ -10,11 +10,12 @@ export class GeoapifyService {
 
   getApiKey() {
     const url = 'http://localhost:3000/apikey';
-    return this.http.get<ApiKeyResponse>(url);
+    const response = this.http.get<ApiKeyResponse>(url);
+    return response;
   }
 }
 
 type ApiKeyResponse = {
-  apikey: string;
+  key: string;
 };
 
