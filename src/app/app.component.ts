@@ -1,24 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MapComponent } from './map/map.component';
-import { GeoapifyService } from './geoapify.service';
+import { MapApiService } from './mapApi.service';
+import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MapComponent],
+  imports: [CommonModule, RouterOutlet, MapComponent, NgxMapLibreGLModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(private geoapifyService: GeoapifyService) { }
+export class AppComponent implements OnInit {
+  constructor(private mapApiService: MapApiService) { }
 
-  apiKeyResolved?: string;
+  styleUrl?: string;
 
-ngOnInit() {
-    this.geoapifyService.getApiKey().subscribe((response) => {
-      this.apiKeyResolved = response.key;
+  ngOnInit() {
+    this.mapApiService.getApiKey().subscribe((response) => {
+      this.styleUrl = `https://maps.geoapify.com/v1/styles/osm-bright/style.json?apiKey=${response.key}`
     });
   }
 }

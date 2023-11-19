@@ -1,1 +1,7 @@
-<div class="map-container" #map></div>
+<mgl-map
+  [style]="styleUrl || 'mapbox://styles/mapbox/streets-v9'"
+  [zoom]="[16]"
+  [center]="initialPosition"
+  class="map-container"
+>
+</mgl-map>

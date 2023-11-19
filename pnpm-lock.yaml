@@ -35,6 +35,9 @@ dependencies:
   '@angular/router':
     specifier: ^17.0.0
     version: 17.0.2(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
+  '@maplibre/ngx-maplibre-gl':
+    specifier: ^16.3.0
+    version: 16.3.0(@angular/common@17.0.2)(@angular/core@17.0.2)(maplibre-gl@3.6.0)(rxjs@7.8.1)
   maplibre-gl:
     specifier: ^3.6.0
     version: 3.6.0
@@ -2492,6 +2495,21 @@ packages:
       minimist: 1.2.8
       rw: 1.3.3
       sort-object: 3.0.3
+    dev: false
+
+  /@maplibre/ngx-maplibre-gl@16.3.0(@angular/common@17.0.2)(@angular/core@17.0.2)(maplibre-gl@3.6.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-t5wcwvZJS25G1FTKl8pubrlVASeQdz2IKGgFjP659xaZ+deP6EP7EdFroi52vU+J1F3ndH02npauGKN024YpEw==}
+    peerDependencies:
+      '@angular/common': '>= 16.0.0'
+      '@angular/core': '>= 16.0.0'
+      maplibre-gl: '>= 3.0.0'
+      rxjs: '>= 7.5.7'
+    dependencies:
+      '@angular/common': 17.0.2(@angular/core@17.0.2)(rxjs@7.8.1)
+      '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
+      maplibre-gl: 3.6.0
+      rxjs: 7.8.1
+      tslib: 2.6.2
     dev: false
 
   /@material/animation@15.0.0-canary.a246a4439.0:

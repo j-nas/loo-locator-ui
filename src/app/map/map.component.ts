@@ -1,46 +1,36 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Map } from 'maplibre-gl';
-import { GeoapifyService } from '../geoapify.service';
-
+import { MapApiService } from '../mapApi.service';
+import { NgxMapLibreGLModule } from '@maplibre/ngx-maplibre-gl';
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxMapLibreGLModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
-export class MapComponent {
-  @ViewChild('map')
-  private mapContainer!: ElementRef<HTMLElement>;
+export class MapComponent implements OnInit {
+  initialPosition: [number, number] = [123, 49];
 
-  private map!: Map;
+  constructor(private geoapifyService: MapApiService) { }
 
-  constructor(private geoapifyService: GeoapifyService) { }
+  ngOnInit(): void {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.initialPosition = [position.coords.longitude, position.coords.latitude];
+      });
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
 
   @Input()
-  apikey?: string;
+  styleUrl?: string;
 
-  ngOnInit() {
-   
-  }
-  ngAfterViewInit() {
-    const initialState = {
-      lng: 11,
-      lat: 49,
-      zoom: 5
-    }
-    
-    const mapStyle = 'https://maps.geoapify.com/v1/styles/osm-carto/style.json';
 
-    this.map = new Map({
-      container: this.mapContainer.nativeElement,
-      style: `${mapStyle}?apiKey=${this.apikey}`,
-      center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom
-    });
 
-  }
 
 }
+
+
